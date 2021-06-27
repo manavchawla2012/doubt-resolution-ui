@@ -2,6 +2,15 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+Setting Up Project
+```bash
+git clone https://github.com/manavchawla2012/doubt-resolution-ui.git
+cd doubt-resolution-ui
+npm install
+touch .env
+echo "NEXT_PUBLIC_API_URL=http://${rest-project-link}/api/v1" >> .env
+```
+
 First, run the development server:
 
 ```bash

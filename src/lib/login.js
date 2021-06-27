@@ -3,7 +3,7 @@ import axios from "axios";
 import {serverRedirect} from "./redirect";
 
 const verifyToken = async (token) => {
-    return axios.post("http://localhost:8000/api/v1/authenticate/verify-token", {}, {
+    return axios.post(`${process.env.NEXT_PUBLIC_API_URL}/authenticate/verify-token`, {}, {
         headers: {
             'Authorization': `Token ${token}`
         }

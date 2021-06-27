@@ -6,7 +6,7 @@ import {showErrorMessageFromAxios} from "./common";
 const axiosInstance = (context) => {
     const cookies = new Cookies(context.req, context.res);
     const instance = axios.create({
-        baseURL: "http://localhost:8000/api/v1",
+        baseURL: process.env.NEXT_PUBLIC_API_URL,
         headers: {
             'Content-Type': 'application/json',
         }
