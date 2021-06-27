@@ -9,7 +9,6 @@ function getOrCreateStore(initialState) {
     if (isServer) {
         return initializeStore(initialState);
     }
-    console.log(initialState)
     // Create store if unavailable on the client and set it on the window object
     if (!window[__NEXT_REDUX_STORE__]) {
         window[__NEXT_REDUX_STORE__] = initializeStore(initialState);

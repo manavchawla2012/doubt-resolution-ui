@@ -7,6 +7,7 @@ const instance = axios.create({
     baseURL: "http://localhost:8000/api/v1",
     headers: {
         'Content-Type': 'application/json',
+        "Access-Control-Allow-Origin": "*"
     }
 })
 
@@ -30,7 +31,7 @@ instance.interceptors.response.use(res => {
             clientRedirect(`/login?error=${showErrorMessageFromAxios(error, "Please Login Again...")}`)
         }
     }
-    return Promise.reject(error.response)
+    throw error.response
 })
 
 

@@ -2,8 +2,10 @@ import {Component} from "react";
 import {getUserDetailsAction} from "../redux/actions/authAction";
 import {connect} from "react-redux";
 import {WebsiteNavbarComponent} from "../components/common"
+import {setLoader} from "../redux/actions/commonAction";
+import LoaderComponent from "../components/common/LoaderComponent";
 
-const PageHOC = (WrappedComponent) => {
+const PageHOC = (WrappedComponent, extra={}) => {
     class BasePage extends Component {
         constructor(props) {
             super(props);
@@ -16,11 +18,17 @@ const PageHOC = (WrappedComponent) => {
         render() {
             return (
                 <>
-                    <WebsiteNavbarComponent/>
-                    <WrappedComponent {...this.props}/>
+                    <WebsiteNavbarComponent navigation={extra.navigation}/>
+                    <LoaderComponent/>
+                    <div className={"col-12"} style={{padding: "0 50px"}}>
+                        {extra.heading ?
+                            <div className={"hoc-heading"}>{extra.heading}</div> : ""}
+                        <WrappedComponent {...this.props}/>
+                    </div>
                 </>
             )
         }
+
     }
 
     const mapStateToProps = state => {
@@ -31,7 +39,8 @@ const PageHOC = (WrappedComponent) => {
 
     const mapDispatchToProps = dispatch => {
         return {
-            userDetails: () => dispatch(getUserDetailsAction())
+            userDetails: () => dispatch(getUserDetailsAction()),
+            setLoader: (state) => dispatch(setLoader(state))
         }
     }
 

@@ -14,7 +14,7 @@ const LoginPage = ({login}) => {
     }
     return (
         <div className={"login"}>
-            <div className="container">
+            <div className="login-container">
                 <div className="form-box">
                     <div className="header-form">
                         <h4 className="text-primary text-center"><FaUserCircle fontSize={"110px"}/></h4>
@@ -34,7 +34,7 @@ const LoginPage = ({login}) => {
                                 <div className="input-group-prepend">
                                     <span className="input-group-text"><FaLock/></span>
                                 </div>
-                                <input type="text" className="form-control" placeholder="Password"
+                                <input type="password" className="form-control" placeholder="Password"
                                        onChange={e => setPassword(e.target.value)} value={password}/>
                             </div>
                             <button type="button" className="btn btn-secondary btn-block"

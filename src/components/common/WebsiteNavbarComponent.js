@@ -1,21 +1,30 @@
 import {Button, Nav, Navbar} from "react-bootstrap";
 import {logoutAction} from "../../redux/actions/authAction";
 import {connect} from "react-redux";
+import { useRouter } from 'next/router'
 
-const WebsiteNavBarComponent = ({logout}) => {
-    return(
+const WebsiteNavBarComponent = ({logout, navigation, user_details}) => {
+    const router = useRouter()
+    return (
         <>
-            <Navbar bg="light" variant="light" fixed={"top"}>
-                <Navbar.Brand href="#home" className="mr-auto">
+            <Navbar bg="light" variant="light">
+                <Navbar.Brand href="/">
                     <img
                         alt=""
-                        src={"logo.svg"}
-                        width="30"
-                        height="30"
+                        src={"http://localhost:3000/logo.svg"}
+                        width="80px"
+                        height="60px"
                         className="d-inline-block align-top"
-                    />{' '}
-                    Home| Raise Doubt
+                    />
                 </Navbar.Brand>
+                <Nav className="mr-auto" activeKey={router.pathname}>
+                    <Nav.Link active disabled>Home | {navigation}</Nav.Link>
+                    {user_details.is_superuser || user_details.is_staff ?
+                        <>
+                            <Nav.Link href="/dashboard">Dashboard</Nav.Link>
+                            <Nav.Link href="/user/create">Create User</Nav.Link>
+                        </> : ""}
+                </Nav>
                 <Nav>
                     <Nav.Link eventKey={2}>
                         <Button onClick={logout} style={{margin: 0}}>Logout</Button>
@@ -27,6 +36,7 @@ const WebsiteNavBarComponent = ({logout}) => {
 }
 const mapStateToProps = state => {
     return {
+        user_details: state.auth.user_details
     }
 }
 
