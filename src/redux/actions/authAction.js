@@ -47,3 +47,15 @@ export const loginAction = (user_name, password) => {
         })
     }
 }
+
+export const logoutAction = () =>{
+    return async (dispatch) => {
+        const api_resp = await axios.post("/authenticate/logout")
+        const cookies = new Cookies()
+        cookies.remove('token')
+        dispatch({
+            type: USER_LOGOUT
+        })
+        clientRedirect("/")
+    }
+}

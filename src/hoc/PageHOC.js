@@ -1,6 +1,7 @@
 import {Component} from "react";
 import {getUserDetailsAction} from "../redux/actions/authAction";
 import {connect} from "react-redux";
+import {WebsiteNavbarComponent} from "../components/common"
 
 const PageHOC = (WrappedComponent) => {
     class BasePage extends Component {
@@ -15,6 +16,7 @@ const PageHOC = (WrappedComponent) => {
         render() {
             return (
                 <>
+                    <WebsiteNavbarComponent/>
                     <WrappedComponent {...this.props}/>
                 </>
             )
